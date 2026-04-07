@@ -1,38 +1,17 @@
 'use client'
 
-import { useState } from 'react'
 import UserCard from './UserCard'
+import { useUsers } from '@/lib/hooks/useUsers'
 
-interface User {
-  id: number
-  name: string
-  email: string
-}
 
 export default function UserList() {
-  const [users] = useState<User[]>([
-    {
-      id: 1,
-      name: 'Alice Johnson',
-      email: 'alice.johnson@example.com',
-    },
-    {
-      id: 2,
-      name: 'Bob Smith',
-      email: 'bob.smith@example.com',
-    },
-    {
-      id: 3,
-      name: 'Carol Davis',
-      email: 'carol.davis@example.com',
-    },
-    {
-      id: 4,
-      name: 'David Wilson',
-      email: 'david.wilson@example.com',
-    },
-  ])
+  const { users, loading, error } = useUsers()
+  
 
+  if(loading) return <p className="text-center text-gray-600">Cargando usuarios...</p>
+  if(error) return <p className="text-center text-red-600">Error al cargar los usuarios: {error}</p>
+
+ 
   return (
     <div>
       <p className="text-gray-600 mb-6">
