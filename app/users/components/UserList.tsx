@@ -6,7 +6,7 @@ import { useUsers } from '@/lib/hooks/useUsers'
 import { useMemo, useState } from 'react'
 import { SearchBar } from './SearchBar'
 import { RefreshButton } from './RefreshButton'
-
+import { CreateUserForm } from './CreateUserForm'
 
 export default function UserList() {
   const { users, loading, error,refecth } = useUsers()
@@ -40,7 +40,8 @@ export default function UserList() {
             <RefreshButton
                loading={loading}
                onRefresh={refecth}
-            /> 
+            />
+            <CreateUserForm onSuccess={refecth} />
       </div>
       {/* Contador  */}
 
