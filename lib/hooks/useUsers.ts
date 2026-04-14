@@ -11,7 +11,7 @@ interface UseUsersReturn {
   users: User[]
   loading: boolean
   error: AppError | null
-  retry: () => void
+  refecth: () => void
 }
 
 export function useUsers(): UseUsersReturn {
@@ -48,9 +48,10 @@ export function useUsers(): UseUsersReturn {
   }, [attempt]) // re-ejecuta cuando attempt cambia
 
   // retry incrementa attempt → dispara el useEffect de nuevo
-  const retry = useCallback(() => {
+  const refecth = useCallback(() => {
+    setLoading(true)
     setAttempt(prev => prev + 1)
   }, [])
 
-  return { users, loading, error, retry }
+  return { users, loading, error, refecth }
 }

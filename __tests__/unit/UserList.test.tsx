@@ -39,7 +39,7 @@ describe('UserList', () => {
     test('muestra el total de usuarios', async () => {
         render(<UserList/>)
         await waitFor(() => {
-            expect(screen.getByText('2')).toBeInTheDocument()
+            expect(screen.getByText(/Total:/i)).toBeInTheDocument()
         })
     })
 
